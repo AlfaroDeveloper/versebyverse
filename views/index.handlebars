@@ -2,6 +2,49 @@
   h3 {
     text-align: center;
   }
+
+
+  /* CSS */
+  .button-54 {
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000;
+    cursor: pointer;
+    border: 3px solid;
+    padding: 0.25em 0.5em;
+    box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+
+  .button-54:active {
+    box-shadow: 0px 0px 0px 0px;
+    top: 5px;
+    left: 5px;
+  }
+
+  @media (min-width: 768px) {
+    .button-54 {
+      padding: 0.25em 0.75em;
+    }
+  }
+
+  .accordion_btn {
+    display: block;
+    width: 100%;
+    margin: 10px auto;
+  }
+
+  .accordion_content {
+    display: none;
+    max-height: 0;
+    transition: height .2s;
+  }
 </style>
 
 <div id="divInputs">
@@ -42,18 +85,37 @@
     <span> {{this.ogText}} </span>
     {{/each}}
   </p>
+  <br>
   {{else}}
   {{/if}}
 
 
   {{#if commentOne.commentary}}
-  <p><b>Spurgeon's Commentary:</b> {{commentOne.commentary}}</p>
-  {{else if commentTwo.commentary}}
-  <p><b>Barnes Commentary:</b> {{commentTwo.commentary}}</p>
-  {{else if commentThree.commentary}}
-  <p><b>Explanatory Commentary:</b> {{commentThree.commentary}}</p>
-  {{else}}
-  {{/if}}
+  <div class="accordion">
+
+    <button class="accordion_btn button-54" id="one" type="button">Expand Spurgeon's Commentary</button>
+    <p class="accordion_content one"><b>Spurgeon's Commentary:</b> {{commentOne.commentary}}</p>
+
+  </div>
+  {{else}}{{/if}}
+  <br>
+  {{#if commentTwo.commentary}}
+  <div class="accordion">
+
+    <button class="accordion_btn button-54" id="two" type="button">Expand Barnes Commentary</button>
+    <p class="accordion_content two"><b>Barnes Commentary:</b> {{commentTwo.commentary}}</p>
+
+  </div>
+  {{else}}{{/if}}
+  <br>
+  {{#if commentThree.commentary}}
+  <div class="accordion">
+
+    <button class="accordion_btn button-54" id="three" type="button">Expand Explanatory Commentary</button>
+    <p class="accordion_content three"><b>Explanatory Commentary:</b> {{commentThree.commentary}}</p>
+
+  </div>
+  {{else}} {{/if}}
   <br>
   <hr />
   {{#if OG}}<h3>Words May Be Out Of Order But Are All Present With their Definitions</h3>
@@ -115,4 +177,18 @@
       let ogRefrence = z[i];
       getting(strongsRefrence, strongsRefrence, enRefrence, ogRefrence);
     }
+
+
+    document.querySelectorAll('.accordion_btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const accordionContent = button.nextElementSibling;
+        button.classList.toggle('accordion_active');
+        if (button.classList.contains('accordion_active')) {
+          accordionContent.style.display = 'contents';
+        } else {
+          accordionContent.style.display = 'none';
+        }
+      })
+    })
+
   </script>
