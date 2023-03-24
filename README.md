@@ -6,7 +6,7 @@
 
 <p><span>VERSEBYVERSE</span> was created to help the body of christ study God's word</p>
 <p>
-  <a href="https://versebyverse-production.up.railway.app/">Website</a>
+  <a href="https://versebyverse-production.up.railway.app/" target="_blank">Website</a>
 </p>
 
 <p>With VERSEBYVERSE you get</p>
