@@ -40,48 +40,7 @@ function containsSearchedData(arr, verse, book, chapter) {
 function firstIndex(arr) {
   return arr[arr.length - 1];
 }
-function checkBook(book) {
-  book.toLowerCase();
-  switch (book) {
-    case "ezekiel":
-      book = "ezk";
-      break;
-    case "judges":
-      book = "jdg";
-      break;
-    case "philippians":
-      book = "php";
-      break;
-    case "nahum":
-      book = "nam";
-      break;
-    case "mark":
-      book = "mrk";
-      break;
-    case "john":
-      book = "jhn";
-      break;
-    case "philemon":
-      book = "phm";
-      break;
-    case "james":
-      book = "jas";
-      break;
-    case "1john":
-      book = "1jn";
-      break;
-    case "2john":
-      book = "2jn";
-      break;
-    case "3john":
-      book = "3jn";
-      break;
-    default:
-      book = book.substring(0, 3);
-      break;
-  }
-  return book;
-}
+
 function hasNumber(string) {
   string.toLowerCase();
   if (string == "sng") {
@@ -364,8 +323,8 @@ app.get("/json", (req, res) => {
 
 app.get("/verse/:book/:chapter/:verse", (req, res) => {
   // url parameters
-  let book = checkBook(req.params.book);
-  const verse = `${book}.${req.params.chapter}.${req.params.verse}`;
+  
+  const verse = `${req.params.book}.${req.params.chapter}.${req.params.verse}`;
   const firstLetterUppercaseVerse =
     verse.charAt(0).toUpperCase() + verse.slice(1);
   let inputNumberAdjusted = hasNumber(req.params.book);
@@ -373,7 +332,7 @@ app.get("/verse/:book/:chapter/:verse", (req, res) => {
   console.log(book, req.params.chapter, verse);
   // urls to get data from
   let urls = [
-    `https://sore-puce-piranha-toga.cyclic.app/verse/${req.params.book}/${req.params.chapter}/${req.params.verse}`,
+    `https://gentle-clam-frock.cyclic.app/verse/${req.params.book}/${req.params.chapter}/${req.params.verse}`,
     `https://www.studylight.org/commentaries/eng/spe/${inputNumberAdjusted}-${req.params.chapter}.html#verse-${req.params.verse}`,
     `https://www.studylight.org/commentaries/eng/bnb/${inputNumberAdjusted}-${req.params.chapter}.html#verse-${req.params.verse}`,
     `https://www.studylight.org/commentaries/eng/jfu/${inputNumberAdjusted}-${req.params.chapter}.html#verse-${req.params.verse}`,
@@ -395,8 +354,8 @@ app.get("/verse/:book/:chapter/:verse", (req, res) => {
       let $;
 
       // Website One Bible verse
-      let text = searchedVerse.text;
-      let verse = searchedVerse.verse;
+      let text = searchedVerse.verse;
+      let verse = searchedVerse.verseText;
       bibleVerses.push({
         text,
         verse,
