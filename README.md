@@ -1,5 +1,4 @@
 <link rel='stylesheet' href'style.css'/>
-[Document.webm](https://user-images.githubusercontent.com/49664287/227435204-8712ded2-64f1-4fac-945c-98e12b774223.webm)
 
 <img src='images/icon.png' width='75' height='75'/>
 <h1>VERSEBYVERSE</h1>
@@ -18,3 +17,4 @@
   <li>Parsed Original And Interlinear Text With Word Definitions</li>
 </ul>
 
+[Document.webm](https://user-images.githubusercontent.com/49664287/227435204-8712ded2-64f1-4fac-945c-98e12b774223.webm)
