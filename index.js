@@ -20,9 +20,10 @@ const bibleVerses = [];
 const comment_Array_One = [];
 const comment_Array_Two = [];
 const comment_Array_Three = [];
+const comment_Array_Four = [];
 const originalText = [];
 const strongsArray = [];
-let lastTyped, commentOne, commentTwo, commentThree, OG, s;
+let lastTyped, commentOne, commentTwo, commentThree, commentFour, OG, s;
 
 function containsSearchedData(arr, verse, book, chapter) {
   //console.log("v", verse, " ", "ch", chapter, " ", "b", book)
@@ -341,6 +342,7 @@ app.get("/bibleStudy", (req, res) => {
     commentOne,
     commentTwo,
     commentThree,
+    commentFour,
     OG,
     imageList,
     strongsArray,
@@ -363,45 +365,41 @@ app.get("/json", (req, res) => {
 app.get("/verse/:book/:chapter/:verse", (req, res) => {
   // url parameters
   let book = checkBook(req.params.book);
-
   const verse = `${book}.${req.params.chapter}.${req.params.verse}`;
   const firstLetterUppercaseVerse =
     verse.charAt(0).toUpperCase() + verse.slice(1);
-
   let inputNumberAdjusted = hasNumber(req.params.book);
-
   let NT_OT = NT(inputNumberAdjusted, firstLetterUppercaseVerse);
-
+  console.log(book, req.params.chapter, verse);
   // urls to get data from
   let urls = [
-    `https://www.bible.com/bible/100/${firstLetterUppercaseVerse.toUpperCase()}.NASB1995`,
+    `https://sore-puce-piranha-toga.cyclic.app/verse/${req.params.book}/${req.params.chapter}/${req.params.verse}`,
     `https://www.studylight.org/commentaries/eng/spe/${inputNumberAdjusted}-${req.params.chapter}.html#verse-${req.params.verse}`,
     `https://www.studylight.org/commentaries/eng/bnb/${inputNumberAdjusted}-${req.params.chapter}.html#verse-${req.params.verse}`,
     `https://www.studylight.org/commentaries/eng/jfu/${inputNumberAdjusted}-${req.params.chapter}.html#verse-${req.params.verse}`,
     `https://www.studylight.org/interlinear-study-bible/${NT_OT}/${req.params.chapter}-${req.params.verse}.html`,
+    `https://www.studylight.org/commentaries/eng/bcc/${inputNumberAdjusted}-${req.params.chapter}.html#verse-${req.params.verse}`,
   ];
   const request = urls.map((url) => axios.get(url));
   axios
     .all(request)
     .then((response) => {
       // Websites
-      let html = response[0].data;
+      let searchedVerse = response[0].data;
       let secondHtml = response[1].data;
       let thirdHtml = response[2].data;
       let fourthHtml = response[3].data;
       let fithHtml = response[4].data;
+      let sixthHtml = response[5].data;
       // Cheerio Loader
-      let $ = cheerio.load(html);
+      let $;
 
       // Website One Bible verse
-      $(".center.pt3", html).each(function () {
-        const verse = $(this).find(".tc.f3.f2-m").text();
-        const text = $(this).find(".yv-gray50.lh-copy.f3-m").text();
-
-        bibleVerses.push({
-          verse,
-          text,
-        });
+      let text = searchedVerse.text;
+      let verse = searchedVerse.verse;
+      bibleVerses.push({
+        text,
+        verse,
       });
 
       // Second Site is commentary
@@ -468,11 +466,28 @@ app.get("/verse/:book/:chapter/:verse", (req, res) => {
       });
 
       //   sixth site commentary
+      $ = cheerio.load(sixthHtml);
+      $(".commentaries-entry-div", sixthHtml).each(function () {
+        let jsonVerse = $(this).find("h3").text();
+        let name = `${req.params.book} ${req.params.chapter} ${jsonVerse}`;
+        let commentary = $(this).find("p").text();
 
-      OG = arrayLength(originalText, count);
+        comment_Array_Four.push({
+          name,
+          jsonVerse,
+          commentary,
+        });
+      });
 
       // Formatting returned data
+      OG = arrayLength(originalText, count);
       lastTyped = firstIndex(bibleVerses);
+      commentFour = containsSearchedData(
+        comment_Array_Four,
+        req.params.verse,
+        req.params.book,
+        req.params.chapter
+      );
       commentOne = containsSearchedData(
         comment_Array_One,
         req.params.verse,
