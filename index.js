@@ -54,11 +54,55 @@ function hasNumber(string) {
     return string;
   }
 }
+function formatBookInput(book) {
+    book.toLowerCase();
+    switch (book) {
+      case "ezekiel":
+        book = "ezk";
+        break;
+      case "judges":
+        book = "jdg";
+        break;
+      case "philippians":
+        book = "php";
+        break;
+      case "nahum":
+        book = "nam";
+        break;
+      case "mark":
+        book = "mrk";
+        break;
+      case "john":
+        book = "jhn";
+        break;
+      case "philemon":
+        book = "phm";
+        break;
+      case "james":
+        book = "jas";
+        break;
+      case "1john":
+        book = "1jn";
+        break;
+      case "2john":
+        book = "2jn";
+        break;
+      case "3john":
+        book = "3jn";
+        break;
+      default:
+        book = book.substring(0, 3);
+        break;
+    }
+  let a;
+  book = a = book[0].toUpperCase() + book.slice(1);
+    return book;
+  }
 function code(string) {
   let bookCode;
-  let deciphering = string.split(".");
+  
 
-  switch (deciphering[0].trim()) {
+  switch (string) {
     case "Gen":
       bookCode = 1;
       break;
@@ -324,15 +368,13 @@ app.get("/json", (req, res) => {
 app.get("/verse/:book/:chapter/:verse", (req, res) => {
   // url parameters
   
-  const verse = `${req.params.book}.${req.params.chapter}.${req.params.verse}`;
-  const firstLetterUppercaseVerse =
-    verse.charAt(0).toUpperCase() + verse.slice(1);
+  let book = formatBookInput(req.params.book);
   let inputNumberAdjusted = hasNumber(req.params.book);
-  let NT_OT = NT(inputNumberAdjusted, firstLetterUppercaseVerse);
-  console.log(book, req.params.chapter, verse);
+  let NT_OT = NT(inputNumberAdjusted, book);
+  
   // urls to get data from
   let urls = [
-    `https://gentle-clam-frock.cyclic.app/verse/${req.params.book}/${req.params.chapter}/${req.params.verse}`,
+    `https://gentle-clam-frock.cyclic.app/verse/${book}/${req.params.chapter}/${req.params.verse}`,
     `https://www.studylight.org/commentaries/eng/spe/${inputNumberAdjusted}-${req.params.chapter}.html#verse-${req.params.verse}`,
     `https://www.studylight.org/commentaries/eng/bnb/${inputNumberAdjusted}-${req.params.chapter}.html#verse-${req.params.verse}`,
     `https://www.studylight.org/commentaries/eng/jfu/${inputNumberAdjusted}-${req.params.chapter}.html#verse-${req.params.verse}`,
