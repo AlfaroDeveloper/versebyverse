@@ -207,7 +207,7 @@
 
     let input = document.querySelector("#text");
     let fetchBtn = document.querySelector("#fetch");
-    let bibleVerses = input.value.replace(":", "/").replace(" ", "/").replace('song/of solomon', 'sng/').replace(' ', '');
+    
     let contentDiv = document.querySelector('#content');
     let loads = document.querySelector('#load');
 
@@ -215,7 +215,7 @@
     async function fetchData() {
 
       fetch(`/verse/${input.value.replace(":", "/").replace(" ", "/").replace('song/of solomon', 'sng/').replace(' ', '').toLowerCase()}`);
-      console.log(bibleVerses);
+     
     }
     function refresh() {
       setTimeout(function () { location.reload(); }, 2000);
