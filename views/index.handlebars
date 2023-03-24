@@ -92,28 +92,28 @@
 
   {{#if commentOne.commentary}}
   <div class="accordion">
-
     <button class="accordion_btn button-54" id="one" type="button">Expand Spurgeon's Commentary</button>
-    <p class="accordion_content one">{{commentOne.commentary}}</p>
-
+    <p class="accordion_content one"> {{commentOne.commentary}}</p>
   </div>
   {{else}}{{/if}}
   <br>
   {{#if commentTwo.commentary}}
   <div class="accordion">
-
     <button class="accordion_btn button-54" id="two" type="button">Expand Barnes Commentary</button>
     <p class="accordion_content two">{{commentTwo.commentary}}</p>
-
   </div>
   {{else}}{{/if}}
   <br>
   {{#if commentThree.commentary}}
   <div class="accordion">
-
     <button class="accordion_btn button-54" id="three" type="button">Expand Explanatory Commentary</button>
     <p class="accordion_content three">{{commentThree.commentary}}</p>
-
+  </div>
+  {{else}} {{/if}}
+  {{#if commentFour.commentary}}
+  <div class="accordion">
+    <button class="accordion_btn button-54" id="three" type="button">Expand Coffman's Commentary</button>
+    <p class="accordion_content three">{{commentFour.commentary}}</p>
   </div>
   {{else}} {{/if}}
   <br>
