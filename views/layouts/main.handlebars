@@ -221,14 +221,14 @@ a{text-decoration: none;}
      
     }
     function refresh() {
-      setTimeout(function () { location.reload(); }, 850);
+      setTimeout(function () { location.reload(); }, 2050);
     }
      function refresh2() {
       setTimeout(function () { location.reload(); contentDiv.style.display = 'none'; loads.className = 'loader'; loads.style.display = 'block';  }, 4500);
     }
 
 
-    fetchBtn.addEventListener("click", function () { contentDiv.style.display = 'none'; loads.className = 'loader'; loads.style.display = 'block'; fetchData(); refresh(); refresh(); refresh2(); });
+    fetchBtn.addEventListener("click", function () { contentDiv.style.display = 'none'; loads.className = 'loader'; loads.style.display = 'block'; fetchData(); refresh(); refresh();  });
 
   </script>
 </body>
