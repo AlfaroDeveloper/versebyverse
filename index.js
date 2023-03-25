@@ -331,7 +331,7 @@ function strongsFormat(arr) {
   return arr[arr.length - 1];
 }
 
-app.get("/", (req, res) => {
+app.get("/home", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.render("home");
 });
