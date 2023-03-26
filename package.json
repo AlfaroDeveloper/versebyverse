@@ -5,8 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "production":"npm install --omit=dev",
-    "start": "node index.js"
+    "production":"npm install --omit=dev"
   },
   "author": "Armando",
   "license": "ISC",
