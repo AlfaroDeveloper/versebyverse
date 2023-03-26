@@ -188,19 +188,22 @@
         clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0)
       }
     }
-a{text-decoration: none;}
+
+    a {
+      text-decoration: none;
+    }
   </style>
   <br>
-<a href="/home">
-  <div id="logo" class="button-53">
-    <div>
-       <img src='icon.png' alt="Bible for a logo" width="100" height="100">
+  <a href="/">
+    <div id="logo" class="button-53">
+      <div>
+        <img src='icon.png' alt="Bible for a logo" width="100" height="100">
+      </div>
+      <div>
+        <h2>Bible Study One Verse At A Time</h2>
+      </div>
     </div>
-    <div>
-      <h2>Bible Study One Verse At A Time</h2>
-    </div>
-  </div>
-</a>
+  </a>
   <br>
 
 
@@ -210,7 +213,7 @@ a{text-decoration: none;}
 
     let input = document.querySelector("#text");
     let fetchBtn = document.querySelector("#fetch");
-    
+
     let contentDiv = document.querySelector('#content');
     let loads = document.querySelector('#load');
 
@@ -218,17 +221,17 @@ a{text-decoration: none;}
     async function fetchData() {
 
       fetch(`/verse/${input.value.replace(":", "/").replace(" ", "/").replace('song/of solomon', 'sng/').replace(' ', '').toLowerCase()}`);
-     
+
     }
     function refresh() {
       setTimeout(function () { location.reload(); }, 2050);
     }
-     function refresh2() {
-      setTimeout(function () { location.reload(); contentDiv.style.display = 'none'; loads.className = 'loader'; loads.style.display = 'block';  }, 4500);
+    function refresh2() {
+      setTimeout(function () { location.reload(); contentDiv.style.display = 'none'; loads.className = 'loader'; loads.style.display = 'block'; }, 4500);
     }
 
 
-    fetchBtn.addEventListener("click", function () { contentDiv.style.display = 'none'; loads.className = 'loader'; loads.style.display = 'block'; fetchData(); refresh(); refresh();  });
+    fetchBtn.addEventListener("click", function () { contentDiv.style.display = 'none'; loads.className = 'loader'; loads.style.display = 'block'; fetchData(); refresh(); refresh(); });
 
   </script>
 </body>
