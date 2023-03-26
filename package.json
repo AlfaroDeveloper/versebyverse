@@ -3,9 +3,9 @@
   "ProductionName": "versebyverse",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "npm install node server.js"
+    "start": "npm install node index.js"
   },
   "author": "Armando",
   "license": "ISC",
