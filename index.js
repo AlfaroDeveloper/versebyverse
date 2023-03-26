@@ -340,6 +340,7 @@ app.get("/bibleStudy", (req, res) => {
   let imageList = [];
   imageList.push({ src: "/images/icon.png", name: "logo" });
   res.header("Access-Control-Allow-Origin", "*");
+  
   res.render("index", {
     lastTyped,
     commentOne,
@@ -424,11 +425,14 @@ app.get("/verse/:book/:chapter/:verse", (req, res) => {
         let name = `${req.params.book} ${req.params.chapter} ${jsonVerse}`;
         let commentary = $(this).find("p").text();
 
-        comment_Array_Two.push({
-          name,
-          jsonVerse,
-          commentary,
-        });
+       
+          comment_Array_Two.push({
+            name,
+            jsonVerse,
+            commentary,
+          });
+        
+        
       });
 
       // Second Site is commentary

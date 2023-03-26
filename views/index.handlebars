@@ -74,14 +74,14 @@
   <p class="p">
     <b>Interlinear:</b>
     {{#each OG}}
-    <span> {{this.enText}} </span>
+    <span>{{this.enText}} </span>
     {{/each}}
   </p>
   <br />
   <p class="p">
     <b>Original-Text:</b>
     {{#each OG}}
-    <span> {{this.ogText}} </span>
+    <span>{{this.ogText}} </span>
     {{/each}}
   </p>
   <br>
@@ -94,28 +94,29 @@
     <button class="accordion_btn button-54" id="one" type="button">Expand Spurgeon's Commentary</button>
     <p class="accordion_content one"> {{commentOne.commentary}}</p>
   </div>
-   <br>
+  <br>
   {{else}}{{/if}}
-  {{#if commentTwo.commentary}}
+  {{#if commentTwo}}
   <div class="accordion">
-    <button class="accordion_btn button-54" id="two" type="button">Expand Barnes Commentary</button>
-    <p class="accordion_content two">{{commentTwo.commentary}}</p>
+    <button class='accordion_btn button-54' id='two' type='button'>Expand Barnes Commentary</button>
+    <p class='accordion_content two'>{{commentTwo.commentary}}</p>
   </div>
-   <br>
+  <br>
   {{else}}{{/if}}
+
   {{#if commentThree.commentary}}
   <div class="accordion">
     <button class="accordion_btn button-54" id="three" type="button">Expand Explanatory Commentary</button>
     <p class="accordion_content three">{{commentThree.commentary}}</p>
   </div>
-   <br>
+  <br>
   {{else}} {{/if}}
   {{#if commentFour.commentary}}
   <div class="accordion">
     <button class="accordion_btn button-54" id="three" type="button">Expand Coffman's Commentary</button>
     <p class="accordion_content three">{{commentFour.commentary}}</p>
   </div>
-   <br>
+  <br>
   {{else}} {{/if}}
   <hr />
   {{#if OG}}<h3>Words May Be Out Of Order But Are All Present With their Definitions</h3>
@@ -123,8 +124,12 @@
   <script type="text/javascript">let x = []; let y = []; let z = [];</script>
   <div id="textInfo">
     {{#each OG}}
-    <script
-      type="text/javascript"> x.push('{{{this.strongs}}}'); y.push('{{{this.enText}}}'); z.push('{{{this.ogText}}}');</script>
+    <script type="text/javascript">
+
+      x.push("{{{this.strongs}}}");
+      y.push("{{{this.enText}}}");
+      z.push("{{{this.ogText}}}");
+    </script>
     {{/each}}
 
   </div>
@@ -166,16 +171,26 @@
           textInfoDiv.appendChild(p3);
           textInfoDiv.appendChild(p4);
           textInfoDiv.appendChild(hr)
-         
+
         })
         .catch((err) => console.log(err));
     }
 
-    for (let i = 0; i < x.length; i++) {
-      let strongsRefrence = x[i];
-      let enRefrence = y[i];
-      let ogRefrence = z[i];
-      getting(strongsRefrence, strongsRefrence, enRefrence, ogRefrence);
+    let uniqueStrongRefrences = [...new Set(x)];
+    let uniqueEnglishRefrences = [...new Set(y)];
+    let uniqueOriginalRefrences = [...new Set(z)];
+
+    for (let i = 0; i < uniqueStrongRefrences.length; i++) {
+      if (uniqueEnglishRefrences[i].trim() !== '') {
+        console.log(uniqueEnglishRefrences[i]);
+        let strongsRefrence = uniqueStrongRefrences[i];
+        let enRefrence = uniqueEnglishRefrences[i];
+        let ogRefrence = uniqueOriginalRefrences[i];
+        getting(strongsRefrence, strongsRefrence, enRefrence, ogRefrence);
+      } else {
+        console.log('blank string');
+      }
+
     }
 
 
