@@ -100,7 +100,9 @@ function formatBookInput(book) {
   }
 function code(string) {
   let bookCode;
-  
+  if(string.includes("1") || string.includes("2")){
+    string = string[1].toUpperCase() + string.slice(1);
+}
 
   switch (string) {
     case "Gen":
@@ -127,22 +129,22 @@ function code(string) {
     case "Rut":
       bookCode = 8;
       break;
-    case "1sa":
+    case "1Sa":
       bookCode = 9;
       break;
-    case "2sa":
+    case "2Sa":
       bookCode = 10;
       break;
-    case "1ki":
+    case "1Ki":
       bookCode = 11;
       break;
-    case "2ki":
+    case "2Ki":
       bookCode = 12;
       break;
-    case "1ch":
+    case "1Ch":
       bookCode = 13;
       break;
-    case "2ch":
+    case "2Ch":
       bookCode = 14;
       break;
     case "Ezr":
@@ -238,10 +240,10 @@ function code(string) {
     case "Rom":
       bookCode = 45;
       break;
-    case "1co":
+    case "1Co":
       bookCode = 46;
       break;
-    case "2co":
+    case "2Co":
       bookCode = 47;
       break;
     case "Gal":
@@ -256,16 +258,16 @@ function code(string) {
     case "Col":
       bookCode = 51;
       break;
-    case "1th":
+    case "1Th":
       bookCode = 52;
       break;
-    case "2th":
+    case "2Th":
       bookCode = 53;
       break;
-    case "1ti":
+    case "1Ti":
       bookCode = 54;
       break;
-    case "2ti":
+    case "2Ti":
       bookCode = 55;
       break;
     case "Tit":
@@ -280,19 +282,19 @@ function code(string) {
     case "Jas":
       bookCode = 59;
       break;
-    case "1pe":
+    case "1Pe":
       bookCode = 60;
       break;
-    case "2pe":
+    case "2Pe":
       bookCode = 61;
       break;
-    case "1jhn":
+    case "1Jn":
       bookCode = 62;
       break;
-    case "2jhn":
+    case "2Jn":
       bookCode = 63;
       break;
-    case "3jhn":
+    case "3Jn":
       bookCode = 64;
       break;
     case "Jud":
