@@ -94,15 +94,17 @@ function formatBookInput(book) {
         book = book.substring(0, 3);
         break;
     }
-  let a;
-  book = a = book[0].toUpperCase() + book.slice(1);
+  if (book.includes("1") || book.includes("2")) {
+		book = book[0] + book[1].toUpperCase() + book[2];
+	} else {
+		book = book[0].toUpperCase() + book.slice(1);
+	}
+	console.log(book);
+ 
     return book;
   }
 function code(string) {
   let bookCode;
-  if(string.includes("1") || string.includes("2")){
-    string = string[1].toUpperCase() + string.slice(1);
-}
 
   switch (string) {
     case "Gen":
